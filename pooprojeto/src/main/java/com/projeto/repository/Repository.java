@@ -10,17 +10,10 @@ public abstract class Repository {
         this.list = new ArrayList<>();
     }
 
-    public void add(Object entrada) {
-        list.add(entrada);
-    }
-    public Object get(int index){
-        if(index >= 0 && index < list.size()){
-            return list.get(index);
-        }
-        return null;
-    }
-    public List<Object> getAll() {
-        return new ArrayList<>(list);
-    }
+    public abstract void add(Object entrada);
+
+    public abstract Object get(int index);
+
+    public abstract List<Object> getAll();
 
 }
