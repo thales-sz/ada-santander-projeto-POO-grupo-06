@@ -64,7 +64,61 @@ public class Controller {
 
     private void listAllMovies() {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    }
 
+    private void printExecuteMenuCreateActor() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        createActor();
+    }
+
+    private void printExecuteMenuCreateDirector() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        createDirector();
+    }
+
+    private void printExecuteMenuCreateProducer() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        createProducer();
+    }
+
+    private void printExecuteMenuCreateScreenwriter() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        createScreenwriter();
+    }
+
+    private void printExecuteMenuCreateMovie() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        createMovie();
+    }
+
+    private void printExecuteMenuAssociateMovieActor() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        associateMovieActor();
+    }
+
+    private void printExecuteMenuAssociateMovieDirector() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        associateMovieDirector();
+    }
+
+    private void printExecuteMenuAssociateMovieProducer() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        associateMovieProducer();
+    }
+
+    private void printExecuteMenuAssociateMovieScreenwriter() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        associateMovieScreenwriter();
+    }
+
+    private void printExecuteMenuFindMovie() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        findMovie();
+    }
+
+    private void printExecuteMenuListAllMovies() {
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        listAllMovies();
     }
 
     private void printRegisterSubMenu() {
@@ -84,19 +138,19 @@ public class Controller {
 
         switch (op) {
             case 1:
-                createActor();
+                printExecuteMenuCreateActor();
                 break;
             case 2:
-                createDirector();
+                printExecuteMenuCreateDirector();
                 break;
             case 3:
-                createProducer();
+                printExecuteMenuCreateProducer();
                 break;
             case 4:
-                createScreenwriter();
+                printExecuteMenuCreateScreenwriter();
                 break;
             case 5:
-                createMovie();
+                printExecuteMenuCreateMovie();
                 break;
             default:
                 System.out.println(String.format("Opção %d inválida!", op));
@@ -119,16 +173,16 @@ public class Controller {
 
         switch (op) {
             case 1:
-                associateMovieActor();
+                printExecuteMenuAssociateMovieActor();
                 break;
             case 2:
-                associateMovieDirector();
+                printExecuteMenuAssociateMovieDirector();
                 break;
             case 3:
-                associateMovieProducer();
+                printExecuteMenuAssociateMovieProducer();
                 break;
             case 4:
-                associateMovieScreenwriter();
+                printExecuteMenuAssociateMovieScreenwriter();
                 break;
             default:
                 System.out.println(String.format("Opção %d inválida!", op));
@@ -160,10 +214,10 @@ public class Controller {
                 executeAssociateSubMenu();
                 break;
             case 3:
-                findMovie();
+                printExecuteMenuFindMovie();
                 break;
             case 4:
-                listAllMovies();
+                printExecuteMenuListAllMovies();
                 break;
             default:
                 System.out.println(String.format("Opção %d inválida!", op));
