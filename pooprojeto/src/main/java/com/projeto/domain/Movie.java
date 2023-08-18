@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
+    private final int id;
     private String name;
     private LocalDate releaseDate;
     private double budget;
@@ -14,7 +15,8 @@ public class Movie {
     private List<Producer> producers;
     private List<Screenwriter> screenwriters;
 
-    public Movie(String name, LocalDate releaseDate, double budget, String description) {
+    public Movie(int id, String name, LocalDate releaseDate, double budget, String description) {
+        this.id = id;
         this.name = name;
         this.releaseDate = releaseDate;
         this.budget = budget;
@@ -23,6 +25,10 @@ public class Movie {
         this.directors = new ArrayList<>();
         this.producers = new ArrayList<>();
         this.screenwriters = new ArrayList<>();
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getName() {
