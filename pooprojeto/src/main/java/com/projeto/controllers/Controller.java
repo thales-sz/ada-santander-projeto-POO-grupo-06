@@ -7,6 +7,7 @@ import com.projeto.service.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -113,9 +114,19 @@ public class Controller {
             }
         }
 
-        System.out.println("Digite o orçamento do filme:");
-        double budget = this.sc.nextDouble();
-        this.sc.nextLine();
+        isParsingSuccess = false;
+        double budget = 0;
+
+        while(!isParsingSuccess) {
+            try {
+                System.out.println("Digite o orçamento do filme:");
+                budget = this.sc.nextDouble();
+                isParsingSuccess = true;
+            } catch (InputMismatchException e) {
+                System.out.println(String.format("Número inválido. O formato aceito é por exemplo %.2f.", 12.99));
+            }
+            this.sc.nextLine();
+        }
 
         System.out.println("Digite a descrição do filme:");
         String desc = this.sc.nextLine();
