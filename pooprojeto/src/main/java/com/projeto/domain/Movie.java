@@ -82,9 +82,10 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "name='" + this.name + '\'' +
-                ", releaseDate='" + this.releaseDate + '\'' +
-                ", budget=" + this.budget +
+                "id=" + this.id +
+                ", name='" + this.name + '\'' +
+                ", releaseDate=" + this.releaseDate +
+                ", budget=" + String.format("%.2f",this.budget) +
                 ", description='" + this.description + '\'' +
                 ", actors=" + this.actors +
                 ", directors=" + this.directors +
@@ -92,4 +93,5 @@ public class Movie {
                 ", screenwriters=" + this.screenwriters +
                 '}';
     }
+
 }
