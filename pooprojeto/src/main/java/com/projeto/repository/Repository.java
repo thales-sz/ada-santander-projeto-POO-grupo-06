@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Repository {
-    private List<Object> list;
+    protected List<Object> list;
 
     public Repository() {
         this.list = new ArrayList<>();
