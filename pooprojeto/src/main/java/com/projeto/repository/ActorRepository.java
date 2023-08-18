@@ -1,5 +1,8 @@
 package com.projeto.repository;
 
-public class ActorRepository {
+public class ActorRepository extends Repository {
+
+    
+
   
 }
