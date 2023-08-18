@@ -7,6 +7,7 @@ import com.projeto.service.*;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Controller {
@@ -66,8 +67,8 @@ public class Controller {
         return this.movieService.find(name);
     }
 
-    private void listAllMovies() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private List<Movie> listAllMovies() {
+        return this.movieService.listAll();
     }
 
     private void printExecuteMenuCreateActor() {
@@ -162,8 +163,13 @@ public class Controller {
     }
 
     private void printExecuteMenuListAllMovies() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        listAllMovies();
+        System.out.println("---------------------------------");
+        System.out.println("Listar todos os filmes:");
+        System.out.println("---------------------------------");
+        for(Movie m : this.listAllMovies()) {
+            System.out.println(m);
+            System.out.println();
+        }
     }
 
     private void printRegisterSubMenu() {
