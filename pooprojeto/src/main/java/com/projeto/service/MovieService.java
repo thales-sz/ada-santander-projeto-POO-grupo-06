@@ -16,7 +16,7 @@ public class MovieService {
     }
 
     public void create(String name, LocalDate releaseDate, double budget, String description) {
-        this.movieRepository.add(new Movie(this.COUNTER_MOVIE_ID++, name, releaseDate, budget, description));
+        this.movieRepository.add(new Movie(++this.COUNTER_MOVIE_ID, name, releaseDate, budget, description));
     }
 
     public Movie find(String name) {
