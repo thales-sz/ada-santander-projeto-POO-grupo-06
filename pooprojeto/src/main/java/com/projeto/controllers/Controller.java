@@ -3,6 +3,9 @@ package com.projeto.controllers;
 import com.projeto.repository.MovieRepository;
 import com.projeto.service.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class Controller {
@@ -38,8 +41,8 @@ public class Controller {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
-    private void createMovie() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private int createMovie(String name, LocalDate releaseDate, double budget, String description) {
+        return this.movieService.create(name, releaseDate, budget, description);
     }
 
     private void associateMovieActor() {
@@ -87,8 +90,38 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateMovie() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        createMovie();
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um filme:");
+        System.out.println("---------------------------------");
+
+        System.out.println("Digite o nome do filme:");
+        String name = this.sc.nextLine();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        boolean isParsingSuccess = false;
+        LocalDate releaseDate = null;
+        while(!isParsingSuccess) {
+            try {
+                System.out.println("Digite a data de lançamento do filme no formato dd/mm/aaaa:");
+                String dateStr = this.sc.nextLine();
+                releaseDate = LocalDate.parse(dateStr, formatter);
+                isParsingSuccess = true;
+            } catch (DateTimeParseException e) {
+                System.out.println("Data inválida. O formato aceito é dd/mm/aaaa, por exemplo 17/08/2023.");
+            }
+        }
+
+        System.out.println("Digite o orçamento do filme:");
+        double budget = this.sc.nextDouble();
+        this.sc.nextLine();
+
+        System.out.println("Digite a descrição do filme:");
+        String desc = this.sc.nextLine();
+
+        int idMovie = createMovie(name, releaseDate, budget, desc);
+
+        System.out.println(String.format("Filme %s com id %d cadastrado com sucesso!", name, idMovie));
+        System.out.println("---------------------------------");
     }
 
     private void printExecuteMenuAssociateMovieActor() {

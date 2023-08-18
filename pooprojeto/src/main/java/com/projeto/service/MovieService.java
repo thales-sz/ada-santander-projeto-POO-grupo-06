@@ -15,8 +15,11 @@ public class MovieService {
         this.movieRepository = movieRepository;
     }
 
-    public void create(String name, LocalDate releaseDate, double budget, String description) {
-        this.movieRepository.add(new Movie(++this.COUNTER_MOVIE_ID, name, releaseDate, budget, description));
+    public int create(String name, LocalDate releaseDate, double budget, String description) {
+        Movie movie = new Movie(++this.COUNTER_MOVIE_ID, name, releaseDate, budget, description);
+        this.movieRepository.add(movie);
+
+        return movie.getId();
     }
 
     public Movie find(String name) {
