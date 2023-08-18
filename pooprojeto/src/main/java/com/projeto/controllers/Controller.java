@@ -1,5 +1,6 @@
 package com.projeto.controllers;
 
+import com.projeto.domain.Movie;
 import com.projeto.repository.MovieRepository;
 import com.projeto.service.*;
 
@@ -61,8 +62,8 @@ public class Controller {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
-    private void findMovie() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private Movie findMovie(String name) {
+        return this.movieService.find(name);
     }
 
     private void listAllMovies() {
@@ -145,8 +146,19 @@ public class Controller {
     }
 
     private void printExecuteMenuFindMovie() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        findMovie();
+        System.out.println("---------------------------------");
+        System.out.println("Buscar um filme por nome:");
+        System.out.println("---------------------------------");
+
+        System.out.println("Digite o nome do filme:");
+        String name = this.sc.nextLine();
+        Movie movie = findMovie(name);
+
+        if(movie == null) {
+            System.out.println(String.format("Filme com nome %s não foi encontrado.", name));
+        } else {
+            System.out.println(movie);
+        }
     }
 
     private void printExecuteMenuListAllMovies() {
