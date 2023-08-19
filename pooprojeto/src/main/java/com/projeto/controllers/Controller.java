@@ -57,7 +57,25 @@ public class Controller {
     }
 
     private void associateMovieDirector() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um Diretor");
+        System.out.println("---------------------------------");
+
+        System.out.println("Qual filme deseja associar um diretor? ");
+        String movie = sc.nextLine();
+        Object objmovie = movieService.find(movie);
+        //if()
+        System.out.printf("Qual diretores abaixo deseja associar ao filme %s .",movie);
+        directorService.listAllDirector();
+        sc.nextLine();
+        String director = sc.nextLine();
+        Object objdirector = directorService.findDirector(director);
+
+
+
+
+
     }
 
     private void associateMovieProducer() {

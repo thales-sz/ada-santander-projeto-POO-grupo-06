@@ -1,6 +1,8 @@
 package com.projeto.service;
 
+import com.projeto.domain.Director;
 import com.projeto.domain.Movie;
+import com.projeto.repository.DirectorRepository;
 import com.projeto.repository.MovieRepository;
 
 import java.time.LocalDate;
@@ -39,7 +41,11 @@ public class MovieService {
 
     }
 
-    public void associateDirector() {
+    public void associateDirector(String movie, String director, DirectorService directorService) {
+        movieRepository.getAll().add(movieRepository.getByName(movie));
+        directorService.findDirector(director);
+
+
 
     }
 

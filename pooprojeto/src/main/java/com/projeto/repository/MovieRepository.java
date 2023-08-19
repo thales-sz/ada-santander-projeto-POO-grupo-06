@@ -52,4 +52,6 @@ public class MovieRepository extends Repository {
                 "list=" + this.list +
                 '}';
     }
+
+
 }

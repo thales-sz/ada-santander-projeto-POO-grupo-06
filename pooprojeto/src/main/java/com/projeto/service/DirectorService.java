@@ -4,7 +4,7 @@ import com.projeto.domain.Director;
 import com.projeto.repository.DirectorRepository;
 
 public class DirectorService {
-    public int contador=0;
+    public int contador=1;
     private DirectorRepository directorRepository;
     public DirectorService(DirectorRepository directorRepository){
         this.directorRepository= directorRepository;
@@ -18,12 +18,12 @@ public class DirectorService {
     }
     //public List
     public Director findDirector(String nome){
-
-        return null;
+        return directorRepository.find(nome);
     }
     public Object listAllDirector(){
         return (directorRepository.getAll());
     }
+
 
 
 }

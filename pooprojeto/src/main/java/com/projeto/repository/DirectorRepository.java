@@ -31,11 +31,11 @@ public class DirectorRepository extends Repository{
     }
 
 
-    public Object find(String input) {
+    public Director find(String input) {
 
         for(Object list :list){
             if(input.equalsIgnoreCase(list.toString())){
-                return list;
+                return (Director) list;
                 }
             }
         return null;
