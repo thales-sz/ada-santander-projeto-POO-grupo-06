@@ -40,8 +40,8 @@ public class Controller {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
-    private void createScreenwriter() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private void createScreenwriter(String name, int age, String gender) {
+        this.screenwriterService.create(name, age, gender);
     }
 
     private int createMovie(String name, LocalDate releaseDate, double budget, String description) {
@@ -88,8 +88,21 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateScreenwriter() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        createScreenwriter();
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um(a) roterista:");
+        System.out.println("---------------------------------");
+
+        System.out.println("Digite o nome do(a) roteirista:");
+        String name = this.sc.nextLine();
+
+        System.out.println("Digite a idade do(a) roteirista:");
+        int age = this.sc.nextInt();
+        this.sc.nextLine();
+
+        System.out.println("Digite o gênero do(a) roteirista:");
+        String gender = this.sc.nextLine();
+
+        createScreenwriter(name, age, gender);
     }
 
     private void printExecuteMenuCreateMovie() {
