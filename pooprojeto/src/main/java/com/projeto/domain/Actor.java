@@ -2,11 +2,13 @@ package com.projeto.domain;
 
 public class Actor extends Person{
     
+    private String birthName;
     private final int id;
     public String miniBio;
 
-    public Actor(String name, int age, String gender, int id, String miniBio){
+    public Actor(String name, int age, String gender, String birthName, int id, String miniBio){
         super(name,age,gender);
+        this.birthName = birthName;
         this.id = id;
         this.miniBio = miniBio;
     }
@@ -25,7 +27,8 @@ public class Actor extends Person{
 
     @Override
     public String toString(){
-        return "Name: " + super.getName() +
+        return "Artistic Name: " + super.getName() +
+                ", birth name: " + this.birthName +
                 ", age: " + super.getAge() + 
                 ", gender: " + super.getGender() +
                 ", Mini Bio: " + this.miniBio;
