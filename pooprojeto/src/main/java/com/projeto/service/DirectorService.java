@@ -7,12 +7,14 @@ public class DirectorService {
     public int contador=0;
     private DirectorRepository directorRepository;
     public DirectorService(DirectorRepository directorRepository){
-        this.directorRepository=directorRepository;
+        this.directorRepository= directorRepository;
     }
-    public void createDirector(String nome, int age,String gender){
+    public int createDirector(String nome, int age,String gender){
         Director director = new Director(nome,age,gender,contador);
         contador++;
         directorRepository.add(director);
+        return director.getId();
+
     }
     //public List
     public Director findDirector(String nome){

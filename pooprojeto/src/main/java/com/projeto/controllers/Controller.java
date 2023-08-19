@@ -2,6 +2,7 @@ package com.projeto.controllers;
 
 import com.projeto.domain.Movie;
 import com.projeto.repository.MovieRepository;
+import com.projeto.repository.DirectorRepository;
 import com.projeto.service.*;
 
 import java.time.LocalDate;
@@ -21,7 +22,7 @@ public class Controller {
 
     public Controller() {
         this.actorService = new ActorService();
-        this.directorService = new DirectorService();
+        this.directorService = new DirectorService(new DirectorRepository());
         this.producerService = new ProducerService();
         this.screenwriterService = new ScreewriterService();
         this.movieService = new MovieService(new MovieRepository());
@@ -32,12 +33,15 @@ public class Controller {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
-    private void createDirector() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private int createDirector(String name, int age, String gender) {
+        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        System.out.println("Criando diretor.");
+        return this.directorService.createDirector(name,age,gender);
     }
 
     private void createProducer() {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+
     }
 
     private void createScreenwriter() {
@@ -78,8 +82,23 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateDirector() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        createDirector();
+        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um Diretor");
+        System.out.println("---------------------------------");
+
+        System.out.print("Digite o nome do diretor: ");
+        String name=this.sc.nextLine();
+        System.out.print("Digite a idade do diretor: ");
+        int age=this.sc.nextInt();
+        System.out.print("Digite o gênero do diretor: ");
+        sc.nextLine();
+        String gender=this.sc.nextLine();
+        int idDirector=this.directorService.createDirector(name,age,gender);
+        System.out.printf("Diretor %s criado com Id %d cadastrado com sucesso.", name, idDirector);
+        //createDirector();
+
+
     }
 
     private void printExecuteMenuCreateProducer() {

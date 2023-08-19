@@ -18,7 +18,21 @@ public class DirectorRepository extends Repository{
     }
 
     @Override
-    public Object get(String input) {
+    public Object get(int index) {
+        for(Object obj : this.list){
+            if(obj instanceof Director){
+                Director director =(Director) obj;
+                if(director.getId()== index){
+                    return obj;
+                }
+            }
+        }
+        return null;
+    }
+
+
+    public Object find(String input) {
+
         for(Object list :list){
             if(input.equalsIgnoreCase(list.toString())){
                 return list;
