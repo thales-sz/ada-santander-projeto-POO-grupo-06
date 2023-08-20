@@ -41,12 +41,8 @@ public class MovieService {
 
     }
 
-    public void associateDirector(String movie, String director, DirectorService directorService) {
-        movieRepository.getAll().add(movieRepository.getByName(movie));
-        directorService.findDirector(director);
-
-
-
+    public void associateDirector(Movie movie, Director director, DirectorService directorService) {
+        movie.getDirectors().add(director);
     }
 
     public void associateProducer() {

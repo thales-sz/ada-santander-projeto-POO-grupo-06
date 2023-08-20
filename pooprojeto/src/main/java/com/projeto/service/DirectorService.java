@@ -4,15 +4,16 @@ import com.projeto.domain.Director;
 import com.projeto.repository.DirectorRepository;
 
 public class DirectorService {
-    public int contador=1;
+    private static int counter_Director;
     private DirectorRepository directorRepository;
     public DirectorService(DirectorRepository directorRepository){
         this.directorRepository= directorRepository;
     }
     public int createDirector(String nome, int age,String gender){
-        Director director = new Director(nome,age,gender,contador);
-        contador++;
-        directorRepository.add(director);
+
+        Director director = new Director(nome,age,gender,++this.counter_Director);
+
+        this.directorRepository.add(director);
         return director.getId();
 
     }

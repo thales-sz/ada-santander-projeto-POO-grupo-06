@@ -1,6 +1,7 @@
 package com.projeto.repository;
 
 import com.projeto.domain.Director;
+import com.projeto.domain.Movie;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,14 +34,17 @@ public class DirectorRepository extends Repository{
 
     public Director find(String input) {
 
-        for(Object list :list){
-            if(input.equalsIgnoreCase(list.toString())){
-                return (Director) list;
+        for (Object obj : this.list) {
+            if (obj instanceof Director) {
+                Director director = (Director) obj;
+                if (director.getName().equalsIgnoreCase(input)) {
+                    return director;
                 }
+
             }
+        }
         return null;
     }
-
     @Override
     public List<Object> getAll() {
         return list;

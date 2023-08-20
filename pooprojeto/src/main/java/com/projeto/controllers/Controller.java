@@ -1,5 +1,6 @@
 package com.projeto.controllers;
 
+import com.projeto.domain.Director;
 import com.projeto.domain.Movie;
 import com.projeto.repository.MovieRepository;
 import com.projeto.repository.DirectorRepository;
@@ -35,7 +36,7 @@ public class Controller {
 
     private int createDirector(String name, int age, String gender) {
         //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        System.out.println("Criando diretor.");
+
         return this.directorService.createDirector(name,age,gender);
     }
 
@@ -59,22 +60,38 @@ public class Controller {
     private void associateMovieDirector() {
         //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         System.out.println("---------------------------------");
-        System.out.println("Cadastrar um Diretor");
+        System.out.println("Associar um Diretor ao filme");
         System.out.println("---------------------------------");
+        Movie objmovie;
+        while (true) {
+            System.out.println("Qual filme deseja associar um diretor? ");
 
-        System.out.println("Qual filme deseja associar um diretor? ");
-        String movie = sc.nextLine();
-        Object objmovie = movieService.find(movie);
-        //if()
-        System.out.printf("Qual diretores abaixo deseja associar ao filme %s .",movie);
-        directorService.listAllDirector();
-        sc.nextLine();
-        String director = sc.nextLine();
-        Object objdirector = directorService.findDirector(director);
+            String movie = sc.nextLine();
+             objmovie = movieService.find(movie);
+            if (objmovie == null) {
+                System.out.println(String.format("Filme com nome %s não foi encontrado.", movie));
+            } else {
+                System.out.println(objmovie);
+                break;
+            }
+        }
+        Director objdirector;
+        while(true) {
+            System.out.println("Qual diretor deseja associar ao filme? ");
 
 
+            String director = sc.nextLine();
+             objdirector = directorService.findDirector(director);
+             if(objdirector==null){
+                 System.out.printf("Diretor %s não encontrado. \n",director);
+             }else{
+                 System.out.println(objdirector.toString());
+                 break;
+             }
 
-
+        }
+        movieService.associateDirector(objmovie,objdirector,directorService);
+        System.out.println("Diretor associado com sucesso!");
 
     }
 
@@ -180,7 +197,7 @@ public class Controller {
     }
 
     private void printExecuteMenuAssociateMovieDirector() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+
         associateMovieDirector();
     }
 
