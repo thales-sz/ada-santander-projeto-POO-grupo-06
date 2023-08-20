@@ -116,16 +116,17 @@ public class Controller {
 
         isParsingSuccess = false;
         double budget = 0;
-
         while(!isParsingSuccess) {
-            try {
-                System.out.println("Digite o orçamento do filme:");
+            System.out.println("Digite o orçamento do filme:");
+
+            if(this.sc.hasNextDouble()) {
                 budget = this.sc.nextDouble();
+                this.sc.nextLine();
                 isParsingSuccess = true;
-            } catch (InputMismatchException e) {
+            } else {
                 System.out.println(String.format("Número inválido. O formato aceito é por exemplo %.2f.", 12.99));
+                this.sc.nextLine();
             }
-            this.sc.nextLine();
         }
 
         System.out.println("Digite a descrição do filme:");
