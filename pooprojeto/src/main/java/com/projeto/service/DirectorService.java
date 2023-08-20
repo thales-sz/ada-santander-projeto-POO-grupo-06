@@ -1,7 +1,10 @@
 package com.projeto.service;
 
 import com.projeto.domain.Director;
+import com.projeto.domain.Movie;
 import com.projeto.repository.DirectorRepository;
+
+import java.util.stream.Collectors;
 
 public class DirectorService {
     private static int counter_Director;
@@ -22,7 +25,11 @@ public class DirectorService {
         return directorRepository.find(nome);
     }
     public Object listAllDirector(){
-        return (directorRepository.getAll());
+        return this.directorRepository.getAll()
+                .stream()
+                .filter(element -> element instanceof Director)
+                .map(element -> (Director) element)
+                .collect(Collectors.toList());
     }
 
 

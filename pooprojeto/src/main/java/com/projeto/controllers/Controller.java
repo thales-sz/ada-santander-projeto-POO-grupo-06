@@ -93,6 +93,7 @@ public class Controller {
         movieService.associateDirector(objmovie,objdirector,directorService);
         System.out.println("Diretor associado com sucesso!");
 
+
     }
 
     private void associateMovieProducer() {
@@ -130,7 +131,7 @@ public class Controller {
         sc.nextLine();
         String gender=this.sc.nextLine();
         int idDirector=this.directorService.createDirector(name,age,gender);
-        System.out.printf("Diretor %s criado com Id %d cadastrado com sucesso.", name, idDirector);
+        System.out.printf("Diretor %s criado com Id %d cadastrado com sucesso.\n", name, idDirector);
         //createDirector();
 
 
@@ -339,7 +340,6 @@ public class Controller {
                 System.out.println(String.format("Opção %d inválida!", op));
         }
     }
-
     public void mainMenu() {
         int op = -1;
 

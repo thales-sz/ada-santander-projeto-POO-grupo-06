@@ -4,6 +4,7 @@ import com.projeto.domain.Director;
 import com.projeto.domain.Movie;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DirectorRepository extends Repository{
@@ -47,6 +48,6 @@ public class DirectorRepository extends Repository{
     }
     @Override
     public List<Object> getAll() {
-        return list;
+        return Collections.unmodifiableList(this.list);
     }
 }
