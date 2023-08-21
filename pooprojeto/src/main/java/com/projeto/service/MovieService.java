@@ -1,6 +1,8 @@
 package com.projeto.service;
 
+import com.projeto.domain.Director;
 import com.projeto.domain.Movie;
+import com.projeto.repository.DirectorRepository;
 import com.projeto.repository.MovieRepository;
 
 import java.time.LocalDate;
@@ -27,20 +29,16 @@ public class MovieService {
     }
 
     public List<Movie> listAll() {
-        return this.movieRepository.getAll()
-                .stream()
-                .filter(element -> element instanceof Movie)
-                .map(element -> (Movie) element)
-                .collect(Collectors.toList());
+        return this.movieRepository.getAll().stream().filter(element -> element instanceof Movie)
+                .map(element -> (Movie) element).collect(Collectors.toList());
     }
 
-
-    public void associateActor() {
-
+    public void associateActor(Movie movie, Actor actor) {
+        movie.getActors().add(actor);
     }
 
-    public void associateDirector() {
-
+    public void associateDirector(Movie movie, Director director, DirectorService directorService) {
+        movie.getDirectors().add(director);
     }
 
     public void associateProducer() {
