@@ -3,6 +3,9 @@ package com.projeto.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Arrays.stream;
 
 public class Movie {
     private final int id;
@@ -87,19 +90,31 @@ public class Movie {
                 "\nDescrição: '" + this.description + "'";
 
         if(this.actors.size() > 0) {
-            string += "\nAtor(es): " + this.actors;
+            string += "\nAtor(es): ";
+            string += this.actors.stream()
+                .map(element -> element.getName())
+                .collect(Collectors.toList());
         }
 
         if(this.directors.size() > 0) {
-            string += "\nDiretor(es): " + this.directors;
+            string += "\nDiretor(es): ";
+            string += this.directors.stream()
+                    .map(element -> element.getName())
+                    .collect(Collectors.toList());
         }
 
         if(this.producers.size() > 0) {
-            string += "\nProdutor(es): " + this.producers;
+            string += "\nProdutor(es): ";
+            string += this.producers.stream()
+                    .map(element -> element.getName())
+                    .collect(Collectors.toList());
         }
 
         if(this.screenwriters.size() > 0) {
-            string += "\nRoteirista(s): " + this.screenwriters;
+            string += "\nRoteirista(s): ";
+            string += this.screenwriters.stream()
+                    .map(element -> element.getName())
+                    .collect(Collectors.toList());
         }
 
         return string;
