@@ -1,5 +1,6 @@
 package com.projeto.controllers;
 
+
 import com.projeto.domain.*;
 import com.projeto.repository.MovieRepository;
 import com.projeto.repository.DirectorRepository;
@@ -33,14 +34,15 @@ public class Controller {
         return this.actorService.createActor(name, age, gender, birthName, miniBio);
     }
 
+
     private int createDirector(String name, int age, String gender) {
+        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+
         return this.directorService.createDirector(name,age,gender);
     }
 
     private void createProducer() {
-        System.out.println(new Object(){
-
-        }.getClass().getEnclosingMethod().getName());
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
     private void createScreenwriter() {
@@ -57,7 +59,6 @@ public class Controller {
     }
 
     private void associateMovieDirector() {
-        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
         System.out.println("---------------------------------");
         System.out.println("Associar um Diretor ao filme");
         System.out.println("---------------------------------");
@@ -91,6 +92,7 @@ public class Controller {
         }
         movieService.associateDirector(objmovie,objdirector,directorService);
         System.out.println("Diretor associado com sucesso!");
+
 
 
     }
@@ -141,7 +143,7 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateDirector() {
-        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+       
         System.out.println("---------------------------------");
         System.out.println("Cadastrar um Diretor");
         System.out.println("---------------------------------");
@@ -155,9 +157,7 @@ public class Controller {
         String gender=this.sc.nextLine();
         int idDirector=this.directorService.createDirector(name,age,gender);
         System.out.printf("Diretor %s criado com Id %d cadastrado com sucesso.\n", name, idDirector);
-        //createDirector();
-
-
+        
     }
 
     private void printExecuteMenuCreateProducer() {
@@ -263,12 +263,14 @@ public class Controller {
     }
 
     private void printExecuteMenuAssociateMovieProducer() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        System.out.println(new Object() {
+        }.getClass().getEnclosingMethod().getName());
         associateMovieProducer();
     }
 
     private void printExecuteMenuAssociateMovieScreenwriter() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+        System.out.println(new Object() {
+        }.getClass().getEnclosingMethod().getName());
         associateMovieScreenwriter();
     }
 
@@ -281,7 +283,7 @@ public class Controller {
         String name = this.sc.nextLine();
         Movie movie = findMovie(name);
 
-        if(movie == null) {
+        if (movie == null) {
             System.out.println(String.format("Filme com nome %s não foi encontrado.", name));
         } else {
             System.out.println(movie);
@@ -292,8 +294,18 @@ public class Controller {
         System.out.println("---------------------------------");
         System.out.println("Listar todos os filmes:");
         System.out.println("---------------------------------");
-        for(Movie m : this.listAllMovies()) {
+        for (Movie m : this.listAllMovies()) {
             System.out.println(m);
+            System.out.println();
+        }
+    }
+
+    private void printExecuteMenuListAllActors() {
+        System.out.println("---------------------------------");
+        System.out.println("Lista de todos os atores:");
+        System.out.println("---------------------------------");
+        for (Object a : actorService.getAll()) {
+            System.out.println(a);
             System.out.println();
         }
     }
@@ -400,11 +412,10 @@ public class Controller {
                 System.out.println(String.format("Opção %d inválida!", op));
         }
     }
-
     public void mainMenu() {
         int op = -1;
 
-        while(op != 0) {
+        while (op != 0) {
             printMainMenu();
             op = this.sc.nextInt();
             this.sc.nextLine();
