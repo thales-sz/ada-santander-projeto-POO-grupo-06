@@ -35,11 +35,11 @@ public class Controller {
     }
 
 
-    private int createDirector(String name, int age, String gender) {
-        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    // private int createDirector(String name, int age, String gender) {
+    //     //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
 
-        return this.directorService.createDirector(name,age,gender);
-    }
+    //     return this.directorService.createDirector(name,age,gender);
+    // }
 
     private void createProducer() {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
@@ -166,8 +166,28 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateScreenwriter() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
-        createScreenwriter();
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um roterista:");
+        System.out.println("---------------------------------");
+
+        System.out.println("Digite o nome do(a) roterista:");
+        String name = this.sc.nextLine();
+
+        System.out.println("Digite a idade do(a) roterista:");
+        int age = this.sc.nextInt();
+        this.sc.nextLine();
+
+        System.out.println("Digite o gênero do(a) roterista:");
+        String gender = this.sc.nextLine();
+
+        try {
+            this.createScreenwriter(name, age, gender);
+        } catch (Exception e) {
+            throw e;
+        }
+        System.out.println("---------------------------------");
+        System.out.printf("Roteirista %s cadastrado com sucesso!\n", name);
+        
     }
 
     private void printExecuteMenuCreateMovie() {
@@ -267,9 +287,52 @@ public class Controller {
     }
 
     private void printExecuteMenuAssociateMovieScreenwriter() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
-        associateMovieScreenwriter();
+        this.printExecuteMenuListAllMovies();
+        Movie movie;
+        Screenwriter screenwriter;
+
+        while(true) {
+            System.out.println("Digite o nome do filme que deseja associar um roteirista:");
+            String name = this.sc.nextLine();
+            movie = this.findMovie(name);
+
+            if (movie == null) {
+                System.out.println(String.format("Filme com nome %s não foi encontrado.", name));
+            } else {
+                System.out.println(movie);
+                break;
+            }
+        }
+
+        this.printExecuteMenuListAllScreenwriters();
+
+        while (true) {
+            System.out.println("Digite o nome do roteirista que deseja associar ao filme:");
+            String name = this.sc.nextLine();
+            screenwriter = (Screenwriter) this.screenwriterService.find(name);
+
+            if (screenwriter == null) {
+                System.out.println(String.format("Roteirista com nome %s não foi encontrado.", name));
+            } else {
+                System.out.println(screenwriter);
+                break;
+            }
+        }
+
+        movie.getScreenwriters().add(screenwriter);
+        System.out.printf("Roterista %s associado(a) ao filme %s com sucesso!", screenwriter.getName(), movie.getName());
+        System.out.println("\n---------------------------------");
+    }
+
+    private void printExecuteMenuListAllScreenwriters() {
+        System.out.println("---------------------------------");
+        System.out.println("Lista de todos os roteiristas:");
+        System.out.println("---------------------------------");
+        for (Object obj : this.screenwriterService.listAll()) {
+            System.out.println(obj.toString());
+            System.out.println();
+        }
+        System.out.println("---------------------------------");
     }
 
     private void printExecuteMenuFindMovie() {

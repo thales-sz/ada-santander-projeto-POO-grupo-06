@@ -10,7 +10,11 @@ public class Screenwriter extends Person {
   }
 
   public String toString() {
-    return "Screenwriter: " + getName() + ", " + getAge() + ", " + getGender();
+    String string = "Roterista: '" + getName() + "'" +
+        "\nIdade: " + getAge() +
+        "\nGênero: " + getGender() +
+        "\nIdentificação: '" + getId() + "'";
+    return string;
   }
 
   public int getId() {

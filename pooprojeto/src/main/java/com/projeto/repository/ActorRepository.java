@@ -1,6 +1,5 @@
 package com.projeto.repository;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,9 +19,10 @@ public class ActorRepository extends Repository {
     @Override
     public Actor get(int index) {
         for (Object obj : this.list) {
-            if (obj instanceof Actor act) {
-                if (act.getId() == index) {
-                    return act;
+            if (obj instanceof Actor) {
+                Actor actor = (Actor) obj;
+                if (actor.getId() == index) {
+                    return actor;
                 }
             }
         }
@@ -31,9 +31,10 @@ public class ActorRepository extends Repository {
 
     public Actor getActorByName(String name) {
         for (Object obj : this.list) {
-            if (obj instanceof Actor act) {
-                if (act.getName().equals(name)) {
-                    return act;
+            if (obj instanceof Actor) {
+                Actor actor = (Actor) obj;
+                if (actor.getName().equals(name)) {
+                    return actor;
                 }
             }
         }
