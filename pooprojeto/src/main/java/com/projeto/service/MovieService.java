@@ -1,5 +1,6 @@
 package com.projeto.service;
 
+
 import com.projeto.domain.*;
 import com.projeto.repository.MovieRepository;
 
@@ -16,7 +17,7 @@ public class MovieService {
     }
 
     public int create(String name, LocalDate releaseDate, double budget, String description) {
-        Movie movie = new Movie(++this.COUNTER_MOVIE_ID, name, releaseDate, budget, description);
+        Movie movie = new Movie(++MovieService.COUNTER_MOVIE_ID, name, releaseDate, budget, description);
         this.movieRepository.add(movie);
 
         return movie.getId();
