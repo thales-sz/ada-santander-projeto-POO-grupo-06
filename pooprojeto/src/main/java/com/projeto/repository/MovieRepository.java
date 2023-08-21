@@ -17,12 +17,12 @@ public class MovieRepository extends Repository {
     }
 
     @Override
-    public Object get(int index) {
+    public Movie get(int index) {
         for(Object obj : this.list) {
             if(obj instanceof Movie) {
                 Movie movie = (Movie) obj;
                 if(movie.getId() == index) {
-                    return obj;
+                    return movie;
                 }
             }
         }
