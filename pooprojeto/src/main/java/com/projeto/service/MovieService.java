@@ -1,5 +1,6 @@
 package com.projeto.service;
 
+import com.projeto.domain.Actor;
 import com.projeto.domain.Director;
 import com.projeto.domain.Movie;
 import com.projeto.repository.DirectorRepository;

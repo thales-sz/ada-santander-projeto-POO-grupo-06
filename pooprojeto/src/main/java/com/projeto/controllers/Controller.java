@@ -251,7 +251,7 @@ public class Controller {
             }
         }
 
-        movie.getActors().add(actor);
+        //movie.getActors().add(actor);
         associateMovieActor(movie, actor);
         System.out.printf("Ator %s associado ao filme %s com sucesso!", actor.getName(), movie.getName());
         System.out.println("\n---------------------------------");
