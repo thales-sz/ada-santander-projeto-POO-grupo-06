@@ -1,8 +1,6 @@
 package com.projeto.service;
 
-import com.projeto.domain.Director;
-import com.projeto.domain.Movie;
-import com.projeto.repository.DirectorRepository;
+import com.projeto.domain.*;
 import com.projeto.repository.MovieRepository;
 
 import java.time.LocalDate;

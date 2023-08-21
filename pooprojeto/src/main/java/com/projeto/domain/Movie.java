@@ -80,40 +80,30 @@ public class Movie {
         return this.screenwriters;
     }
 
-    @Override
-    public String toString() {
-        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
-                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
+    private String listToString(String title, List list) {
+        String string = "";
 
-        if(this.actors.size() > 0) {
-            string += "\nAtor(es): ";
-            string += this.actors.stream()
-                .map(element -> element.getName())
-                .collect(Collectors.toList());
-        }
-
-        if(this.directors.size() > 0) {
-            string += "\nDiretor(es): ";
-            string += this.directors.stream()
-                    .map(element -> element.getName())
-                    .collect(Collectors.toList());
-        }
-
-        if(this.producers.size() > 0) {
-            string += "\nProdutor(es): ";
-            string += this.producers.stream()
-                    .map(element -> element.getName())
-                    .collect(Collectors.toList());
-        }
-
-        if(this.screenwriters.size() > 0) {
-            string += "\nRoteirista(s): ";
-            string += this.screenwriters.stream()
-                    .map(element -> element.getName())
+        if (list.size() > 0) {
+            string += "\n" + title + ": ";
+            string += list
+                    .stream()
+                    .map(element -> ((Person) element).getName())
                     .collect(Collectors.toList());
         }
 
         return string;
     }
 
+    @Override
+    public String toString() {
+        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
+                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
+
+        string += listToString("Ator(es)", this.actors);
+        string += listToString("Diretor(es)", this.directors);
+        string += listToString("Produtor(es)", this.producers);
+        string += listToString("Roteirista(s)", this.screenwriters);
+
+        return string;
+    }
 }
