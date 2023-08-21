@@ -50,4 +50,6 @@ public class MovieRepository extends Repository {
     public String toString() {
         return "MovieRepository{" + "list=" + this.list + '}';
     }
+
+
 }

@@ -1,7 +1,9 @@
 package com.projeto.controllers;
 
+
 import com.projeto.domain.*;
 import com.projeto.repository.MovieRepository;
+import com.projeto.repository.DirectorRepository;
 import com.projeto.service.*;
 
 import java.time.LocalDate;
@@ -21,7 +23,7 @@ public class Controller {
 
     public Controller() {
         this.actorService = new ActorService();
-        this.directorService = new DirectorService();
+        this.directorService = new DirectorService(new DirectorRepository());
         this.producerService = new ProducerService();
         this.screenwriterService = new ScreewriterService();
         this.movieService = new MovieService(new MovieRepository());
@@ -32,14 +34,15 @@ public class Controller {
         return this.actorService.createActor(name, age, gender, birthName, miniBio);
     }
 
-    private void createDirector() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
+
+    private int createDirector(String name, int age, String gender) {
+        //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+
+        return this.directorService.createDirector(name,age,gender);
     }
 
     private void createProducer() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
+        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
     }
 
     private void createScreenwriter() {
@@ -56,8 +59,42 @@ public class Controller {
     }
 
     private void associateMovieDirector() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
+        System.out.println("---------------------------------");
+        System.out.println("Associar um Diretor ao filme");
+        System.out.println("---------------------------------");
+        Movie objmovie;
+        while (true) {
+            System.out.println("Qual filme deseja associar um diretor? ");
+
+            String movie = sc.nextLine();
+             objmovie = movieService.find(movie);
+            if (objmovie == null) {
+                System.out.println(String.format("Filme com nome %s não foi encontrado.", movie));
+            } else {
+                System.out.println(objmovie);
+                break;
+            }
+        }
+        Director objdirector;
+        while(true) {
+            System.out.println("Qual diretor deseja associar ao filme? ");
+
+
+            String director = sc.nextLine();
+             objdirector = directorService.findDirector(director);
+             if(objdirector==null){
+                 System.out.printf("Diretor %s não encontrado. \n",director);
+             }else{
+                 System.out.println(objdirector.toString());
+                 break;
+             }
+
+        }
+        movieService.associateDirector(objmovie,objdirector,directorService);
+        System.out.println("Diretor associado com sucesso!");
+
+
+
     }
 
     private void associateMovieProducer() {
@@ -106,9 +143,21 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateDirector() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
-        createDirector();
+       
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um Diretor");
+        System.out.println("---------------------------------");
+
+        System.out.print("Digite o nome do diretor: ");
+        String name=this.sc.nextLine();
+        System.out.print("Digite a idade do diretor: ");
+        int age=this.sc.nextInt();
+        System.out.print("Digite o gênero do diretor: ");
+        sc.nextLine();
+        String gender=this.sc.nextLine();
+        int idDirector=this.directorService.createDirector(name,age,gender);
+        System.out.printf("Diretor %s criado com Id %d cadastrado com sucesso.\n", name, idDirector);
+        
     }
 
     private void printExecuteMenuCreateProducer() {
@@ -209,8 +258,7 @@ public class Controller {
     }
 
     private void printExecuteMenuAssociateMovieDirector() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
+
         associateMovieDirector();
     }
 
@@ -364,7 +412,6 @@ public class Controller {
                 System.out.println(String.format("Opção %d inválida!", op));
         }
     }
-
     public void mainMenu() {
         int op = -1;
 
