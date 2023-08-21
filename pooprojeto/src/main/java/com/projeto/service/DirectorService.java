@@ -25,11 +25,8 @@ public class DirectorService {
         return directorRepository.find(nome);
     }
     public Object listAllDirector(){
-        return this.directorRepository.getAll()
-                .stream()
-                .filter(element -> element instanceof Director)
-                .map(element -> (Director) element)
-                .collect(Collectors.toList());
+        return this.directorRepository.getAll();
+
     }
 
 
