@@ -29,16 +29,12 @@ public class MovieService {
     }
 
     public List<Movie> listAll() {
-        return this.movieRepository.getAll()
-                .stream()
-                .filter(element -> element instanceof Movie)
-                .map(element -> (Movie) element)
-                .collect(Collectors.toList());
+        return this.movieRepository.getAll().stream().filter(element -> element instanceof Movie)
+                .map(element -> (Movie) element).collect(Collectors.toList());
     }
 
-
-    public void associateActor() {
-
+    public void associateActor(Movie movie, Actor actor) {
+        movie.getActors().add(actor);
     }
 
     public void associateDirector(Movie movie, Director director, DirectorService directorService) {

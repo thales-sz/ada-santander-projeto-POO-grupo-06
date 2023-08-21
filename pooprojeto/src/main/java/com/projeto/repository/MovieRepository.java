@@ -18,10 +18,10 @@ public class MovieRepository extends Repository {
 
     @Override
     public Object get(int index) {
-        for(Object obj : this.list) {
-            if(obj instanceof Movie) {
+        for (Object obj : this.list) {
+            if (obj instanceof Movie) {
                 Movie movie = (Movie) obj;
-                if(movie.getId() == index) {
+                if (movie.getId() == index) {
                     return obj;
                 }
             }
@@ -30,10 +30,10 @@ public class MovieRepository extends Repository {
     }
 
     public Movie getByName(String name) {
-        for(Object obj : this.list) {
-            if(obj instanceof Movie) {
+        for (Object obj : this.list) {
+            if (obj instanceof Movie) {
                 Movie movie = (Movie) obj;
-                if(movie.getName().equalsIgnoreCase(name)) {
+                if (movie.getName().equalsIgnoreCase(name)) {
                     return movie;
                 }
             }
@@ -48,9 +48,7 @@ public class MovieRepository extends Repository {
 
     @Override
     public String toString() {
-        return "MovieRepository{" +
-                "list=" + this.list +
-                '}';
+        return "MovieRepository{" + "list=" + this.list + '}';
     }
 
 
