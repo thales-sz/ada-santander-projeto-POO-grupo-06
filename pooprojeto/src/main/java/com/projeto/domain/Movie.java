@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static java.util.Arrays.stream;
-
 public class Movie {
     private final int id;
     private String name;
@@ -84,10 +82,8 @@ public class Movie {
 
     @Override
     public String toString() {
-        String string = "Filme: '" + this.name + "'" +
-                "\nData de lançamento: " + this.releaseDate +
-                "\nOrçamento: " + String.format("%.2f",this.budget) +
-                "\nDescrição: '" + this.description + "'";
+        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
+                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
 
         if(this.actors.size() > 0) {
             string += "\nAtor(es): ";
