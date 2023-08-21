@@ -17,12 +17,12 @@ public class MovieRepository extends Repository {
     }
 
     @Override
-    public Object get(int index) {
-        for (Object obj : this.list) {
-            if (obj instanceof Movie) {
+    public Movie get(int index) {
+        for(Object obj : this.list) {
+            if(obj instanceof Movie) {
                 Movie movie = (Movie) obj;
-                if (movie.getId() == index) {
-                    return obj;
+                if(movie.getId() == index) {
+                    return movie;
                 }
             }
         }
@@ -50,6 +50,4 @@ public class MovieRepository extends Repository {
     public String toString() {
         return "MovieRepository{" + "list=" + this.list + '}';
     }
-
-
 }
