@@ -1,7 +1,6 @@
 package com.projeto.repository;
 
 import com.projeto.domain.Director;
-import com.projeto.domain.Movie;
 
 import java.util.ArrayList;
 import java.util.Collections;
