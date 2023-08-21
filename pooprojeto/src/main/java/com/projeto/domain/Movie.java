@@ -81,24 +81,22 @@ public class Movie {
 
     @Override
     public String toString() {
-        String string = "Filme: '" + this.name + "'" +
-                "\nData de lançamento: " + this.releaseDate +
-                "\nOrçamento: " + String.format("%.2f",this.budget) +
-                "\nDescrição: '" + this.description + "'";
+        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
+                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
 
-        if(this.actors.size() > 0) {
+        if (this.actors.size() > 0) {
             string += "\nAtor(es): " + this.actors;
         }
 
-        if(this.directors.size() > 0) {
+        if (this.directors.size() > 0) {
             string += "\nDiretor(es): " + this.directors;
         }
 
-        if(this.producers.size() > 0) {
+        if (this.producers.size() > 0) {
             string += "\nProdutor(es): " + this.producers;
         }
 
-        if(this.screenwriters.size() > 0) {
+        if (this.screenwriters.size() > 0) {
             string += "\nRoteirista(s): " + this.screenwriters;
         }
 
