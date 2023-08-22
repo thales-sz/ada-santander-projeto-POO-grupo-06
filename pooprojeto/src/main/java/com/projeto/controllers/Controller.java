@@ -4,12 +4,12 @@ package com.projeto.controllers;
 import com.projeto.domain.*;
 import com.projeto.repository.MovieRepository;
 import com.projeto.repository.DirectorRepository;
+import com.projeto.repository.ProducerRepository;
 import com.projeto.service.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,7 +24,7 @@ public class Controller {
     public Controller() {
         this.actorService = new ActorService();
         this.directorService = new DirectorService(new DirectorRepository());
-        this.producerService = new ProducerService();
+        this.producerService = new ProducerService(new ProducerRepository());
         this.screenwriterService = new ScreewriterService();
         this.movieService = new MovieService(new MovieRepository());
         this.sc = new Scanner(System.in);
@@ -41,8 +41,8 @@ public class Controller {
     }
 
 
-    private void createProducer() {
-        System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
+    private int createProducer(String name, int age, String gender) {
+        return this.producerService.criateProducer(name, age, gender);
     }
 
     private void createScreenwriter(String name, int age, String gender) {
@@ -97,8 +97,39 @@ public class Controller {
     }
 
     private void associateMovieProducer() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
+        System.out.println("---------------------------------");
+        System.out.println("Associar um Produtor(a) ao filme");
+        System.out.println("---------------------------------");
+        Movie objmovie;
+        while (true) {
+            System.out.println("Qual filme deseja associar um produtor(a)? ");
+
+            String movie = sc.nextLine();
+            objmovie = movieService.find(movie);
+            if (objmovie == null) {
+                System.out.println(String.format("Filme com nome %s não foi encontrado.", movie));
+            } else {
+                System.out.println(objmovie);
+                break;
+            }
+        }
+        Producer objproducer;
+        while(true) {
+            System.out.println("Qual produtor(a) deseja associar ao filme? ");
+
+
+            String producer = sc.nextLine();
+            objproducer = producerService.findProducer(producer);
+            if(objproducer==null){
+                System.out.printf("Produtor(a) %s não encontrado. \n",producer);
+            }else{
+                movieService.associateProducer(objmovie,objproducer);
+                System.out.println(objproducer.toString());
+                System.out.println("Produtor associado com sucesso!");
+                break;
+            }
+        }
+
     }
 
     private void associateMovieScreenwriter() {
@@ -160,10 +191,22 @@ public class Controller {
     }
 
     private void printExecuteMenuCreateProducer() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
-        createProducer();
+        System.out.println("---------------------------------");
+        System.out.println("Cadastrar um Produtor");
+        System.out.println("---------------------------------");
+
+        System.out.print("Digite o nome do produtor: ");
+        String name = this.sc.nextLine();
+        System.out.print("Digite a idade do produtor: ");
+        int age = this.sc.nextInt();
+        System.out.print("Digite o gênero do produtor: ");
+        sc.nextLine();
+        String gender = this.sc.nextLine();
+        int idProducer = this.producerService.criateProducer(name,age,gender);
+        System.out.printf("Produtor %s criado com Id %d cadastrado com sucesso.\n", name, idProducer);
+
     }
+
 
     private void printExecuteMenuCreateScreenwriter() {
         System.out.println("---------------------------------");
@@ -281,8 +324,6 @@ public class Controller {
     }
 
     private void printExecuteMenuAssociateMovieProducer() {
-        System.out.println(new Object() {
-        }.getClass().getEnclosingMethod().getName());
         associateMovieProducer();
     }
 

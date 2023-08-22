@@ -40,8 +40,8 @@ public class MovieService {
         movie.getDirectors().add(director);
     }
 
-    public void associateProducer() {
-
+    public void associateProducer(Movie movie, Producer producer) {
+        movie.getProducers().add(producer);
     }
 
     public void associateScreenwriter() {
