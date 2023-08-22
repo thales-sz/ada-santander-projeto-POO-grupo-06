@@ -35,11 +35,11 @@ public class Controller {
     }
 
 
-    // private int createDirector(String name, int age, String gender) {
-    //     //System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
 
-    //     return this.directorService.createDirector(name,age,gender);
-    // }
+    private int createDirector(String name, int age, String gender) {
+               return this.directorService.createDirector(name,age,gender);
+    }
+
 
     private void createProducer() {
         System.out.println(new Object(){}.getClass().getEnclosingMethod().getName());
@@ -270,7 +270,6 @@ public class Controller {
             }
         }
 
-        movie.getActors().add(actor);
         associateMovieActor(movie, actor);
         System.out.printf("Ator %s associado ao filme %s com sucesso!", actor.getName(), movie.getName());
         System.out.println("\n---------------------------------");
