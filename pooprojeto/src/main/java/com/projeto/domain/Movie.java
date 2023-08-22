@@ -3,6 +3,7 @@ package com.projeto.domain;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Movie {
     private final int id;
@@ -79,28 +80,30 @@ public class Movie {
         return this.screenwriters;
     }
 
-    @Override
-    public String toString() {
-        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
-                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
+    private String listToString(String title, List list) {
+        String string = "";
 
-        if (this.actors.size() > 0) {
-            string += "\nAtor(es): " + this.actors;
-        }
-
-        if (this.directors.size() > 0) {
-            string += "\nDiretor(es): " + this.directors;
-        }
-
-        if (this.producers.size() > 0) {
-            string += "\nProdutor(es): " + this.producers;
-        }
-
-        if (this.screenwriters.size() > 0) {
-            string += "\nRoteirista(s): " + this.screenwriters;
+        if (list.size() > 0) {
+            string += "\n" + title + ": ";
+            string += list
+                    .stream()
+                    .map(element -> ((Person) element).getName())
+                    .collect(Collectors.toList());
         }
 
         return string;
     }
 
+    @Override
+    public String toString() {
+        String string = "Filme: '" + this.name + "'" + "\nData de lançamento: " + this.releaseDate + "\nOrçamento: "
+                + String.format("%.2f", this.budget) + "\nDescrição: '" + this.description + "'";
+
+        string += listToString("Ator(es)", this.actors);
+        string += listToString("Diretor(es)", this.directors);
+        string += listToString("Produtor(es)", this.producers);
+        string += listToString("Roteirista(s)", this.screenwriters);
+
+        return string;
+    }
 }
